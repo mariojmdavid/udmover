@@ -26,7 +26,6 @@ from udmover import __version__
 __author__ = "Mario David"
 __copyright__ = "Mario David"
 __license__ = "Licensed under the Apache License, Version 2.0"
-__version__ = "0.0.1"
 __date__ = "2018"
 
 _logger = logging.getLogger(__name__)

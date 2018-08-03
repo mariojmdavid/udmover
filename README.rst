@@ -1,19 +1,11 @@
-=======
-udmover
-=======
+===============
+User Data Mover
+===============
 
-
-Add a short description here!
-
+Client tool to move data between resources
 
 Description
 ===========
 
-A longer description of your project goes here...
+Client tool to move data between resources
 
-
-Note
-====
-
-This project has been set up using PyScaffold 3.0.3. For details and usage
-information on PyScaffold see http://pyscaffold.org/.

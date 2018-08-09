@@ -12,7 +12,10 @@ import sys
 from setuptools import setup
 
 # Add here console scripts and other entry points in ini-style format
-entry_points = """
+entry_points = {'console_scripts': ['udmover = udmover.module:run']}
+
+
+"""
 [console_scripts]
 # script_name = udmover.module:function
 # For example:

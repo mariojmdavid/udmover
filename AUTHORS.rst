@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* Mario David <mariojmdavid@gmail.com>
+* mariojmdavid <mariojmdavid@gmail.com>

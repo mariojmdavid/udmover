@@ -8,7 +8,8 @@ from __future__ import division, print_function, absolute_import
 import sys
 import logging
 import udmover
-import cmdparser
+from udmover.cmdparser import CmdParser
+from udmover.cmd import Cmd
 
 __author__ = "Mario David"
 __copyright__ = "LIP"
@@ -35,12 +36,18 @@ def main():
     Args:
       args ([str]): command line parameter list
     """
-    args = sys.argv[1:]
-    args = parse_args(args)
-    setup_logging(args.loglevel)
-    _logger.debug("Starting crazy calculations...")
-    print("The {}-th Fibonacci number is {}".format(args.n, fib(args.n)))
-    _logger.info("Script ends here")
+    cmdp = CmdParser()
+    parseok = cmdp.parse(sys.argv)
+
+    if (cmdp.get("", "CMD") == "version") or (cmdp.get("", "GEN_OPT") == "--version"):
+        print('Version: ' + str(Cmd.do_version))
+        sys.exit(0)
+    if (cmdp.get("", "CMD") == "help") or (cmdp.get("", "GEN_OPT") == "--help"):
+        print('\n' + str(Cmd.do_help))
+        sys.exit(0)
+    if not parseok:
+        _logger.error("Error: parsing command line, use: udmover help")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ from __future__ import division, print_function, absolute_import
 import argparse
 import sys
 import logging
+import udmover
 
 __author__ = "Mario David"
 __copyright__ = "LIP"
@@ -47,7 +48,7 @@ def parse_args(args):
     parser.add_argument(
         '--version',
         action='version',
-        version='udmover {ver}'.format(ver=__version__))
+        version='udmover {ver}'.format(ver=udmover.__version__))
     parser.add_argument(
         dest="n",
         help="n-th Fibonacci number",

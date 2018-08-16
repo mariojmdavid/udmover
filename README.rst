@@ -1,19 +1,11 @@
-=======
-udmover
-=======
+===============
+User Data Mover
+===============
 
-
-Add a short description here!
-
+Data mover between storage resources.
 
 Description
 ===========
 
-A longer description of your project goes here...
+User level client tool to move or transfer files and directories between storage resources.
 
-
-Note
-====
-
-This project has been set up using PyScaffold 3.0.3. For details and usage
-information on PyScaffold see http://pyscaffold.org/.

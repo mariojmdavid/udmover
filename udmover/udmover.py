@@ -82,12 +82,13 @@ def setup_logging(loglevel):
                         format=logformat, datefmt="%Y-%m-%d %H:%M:%S")
 
 
-def main(args):
+def main():
     """Main entry point allowing external calls
 
     Args:
       args ([str]): command line parameter list
     """
+    args = sys.argv[1:]
     args = parse_args(args)
     setup_logging(args.loglevel)
     _logger.debug("Starting crazy calculations...")
@@ -95,11 +96,5 @@ def main(args):
     _logger.info("Script ends here")
 
 
-def run():
-    """Entry point for console_scripts
-    """
-    main(sys.argv[1:])
-
-
 if __name__ == "__main__":
-    run()
+    main()

@@ -12,10 +12,10 @@ def setup_package():
     setuptools.setup(
         version=udmover.__version__,
         packages=setuptools.find_packages(),
-        entry_points={
-            'console_scripts': [
-                'udmover = udmover.udmover:run'
-            ]
+        entry_points = {
+           'console_scripts': [
+               'udmover = udmover.udmover:main'
+           ]
         }
     )
 

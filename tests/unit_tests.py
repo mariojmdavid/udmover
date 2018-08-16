@@ -2,13 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from udmover.skeleton import fib
-
-__author__ = "Mario David"
-__copyright__ = "Mario David"
-__license__ = "Licensed under the Apache License, Version 2.0"
-__version__ = "0.0.1"
-__date__ = "2018"
+import udmover
 
 
 def test_fib():

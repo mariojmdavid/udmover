@@ -9,3 +9,7 @@ Description
 
 User level client tool to move or transfer files and directories between storage resources.
 
+Acknowledgments
+===============
+
+* udocker tool: https://github.com/indigo-dc/udocker/

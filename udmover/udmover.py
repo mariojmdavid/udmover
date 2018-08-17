@@ -8,8 +8,8 @@ from __future__ import division, print_function, absolute_import
 import sys
 import logging
 import udmover
-from cli.cmdparser import CmdParser
-from cli.cmd import Cmd
+from udmover.cli.cmdparser import CmdParser
+from udmover.cli.cmd import Cmd
 
 __author__ = "Mario David"
 __copyright__ = "LIP"

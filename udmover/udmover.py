@@ -6,7 +6,6 @@ udmover Description
 from __future__ import division, print_function, absolute_import
 
 import sys
-#import logging
 
 try:
     from udmover.cli.cmdparser import CmdParser
@@ -16,24 +15,15 @@ try:
     from udmover.cli.cmd import Cmd
 except ImportError:
     from cli.cmd import Cmd
+try:
+    from udmover.msg.cmd import Msg
+except ImportError:
+    from cli.msg import Msg
 
 __author__ = "Mario David"
 __copyright__ = "LIP"
 __license__ = "Licensed under the Apache License, Version 2.0"
 __date__ = "2018"
-
-#_logger = logging.getLogger(__name__)
-
-
-#def setup_logging(loglevel):
-#    """Setup basic logging
-
-#    Args:
-#      loglevel (int): minimum loglevel for emitting messages
-#    """
-#    logformat = "[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
-#    logging.basicConfig(level=loglevel, stream=sys.stdout,
-#                        format=logformat, datefmt="%Y-%m-%d %H:%M:%S")
 
 
 def main():
@@ -57,7 +47,7 @@ def main():
         cmd.do_help()
         sys.exit(0)
     if not parseok:
-        #_logger.error("Error: parsing command line, use: udmover help")
+        Msg.err("Error: parsing command line, use: udmover help")
         sys.exit(1)
 
 

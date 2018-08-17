@@ -10,6 +10,10 @@ try:
     from udmover.cli.msg import Msg
 except ImportError:
     from cli.msg import Msg
+try:
+    from udmover.storage.webdav.client import Client
+except ImportError:
+    from storage.webdav.client import Client
 
 
 class Cmd(object):
@@ -29,3 +33,17 @@ class Cmd(object):
           help     :This help
         """
         Msg().out(self.do_help.__doc__)
+
+    def do_webdavfree(self):
+        """
+        Get free space from the webdav server
+        """
+        env = dict()
+        client = Client(env)
+        check = client.check()
+        if check:
+            Msg().out("success")
+            free_size = client.free()
+            Msg().out(free_size)
+        else:
+            Msg().out("not success")

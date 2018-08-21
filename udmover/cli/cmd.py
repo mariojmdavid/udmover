@@ -34,16 +34,16 @@ class Cmd(object):
         """
         Msg().out(self.do_help.__doc__)
 
-    def do_webdavfree(self):
+    def do_webdavlist(self):
         """
-        Get free space from the webdav server
+        Get list of files from the webdav server
         """
         env = dict()
         client = Client(env)
         check = client.check()
         if check:
             Msg().out("success")
-            free_size = client.free()
-            Msg().out(free_size)
+            list_files = client.list()
+            Msg().out(list_files)
         else:
             Msg().out("not success")

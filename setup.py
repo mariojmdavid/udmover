@@ -18,9 +18,6 @@ def setup_package():
            'console_scripts': [
                'udmover = udmover.udmover:main'
            ]
-        },
-        data_files={
-            'etc/udmover/udmover.conf.sample = ~/udmover/udmover.conf.sample'
         }
     )
 

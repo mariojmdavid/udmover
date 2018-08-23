@@ -5,17 +5,22 @@
 """
 
 import setuptools
+import os
 import udmover
 
 
 def setup_package():
+    homedir = os.environ['HOME']
     setuptools.setup(
         version=udmover.__version__,
         packages=setuptools.find_packages(),
-        entry_points = {
+        entry_points={
            'console_scripts': [
                'udmover = udmover.udmover:main'
            ]
+        },
+        data_files={
+            'etc/udmover/udmover.conf.sample = ~/udmover/udmover.conf.sample'
         }
     )
 

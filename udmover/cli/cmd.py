@@ -2,18 +2,9 @@
 """
 Command line and options
 """
-try:
-    from udmover import __version__
-except ImportError:
-    __version__ = '0.0.1.dev'
-try:
-    from udmover.cli.msg import Msg
-except ImportError:
-    from cli.msg import Msg
-try:
-    from udmover.storage.webdav.client import Client
-except ImportError:
-    from storage.webdav.client import Client
+from udmover import __version__
+from udmover.cli.msg import Msg
+from udmover.storage.webdav.client import Client
 
 
 class Cmd(object):

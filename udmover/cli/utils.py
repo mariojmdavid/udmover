@@ -7,14 +7,8 @@ import sys
 import os
 import subprocess
 import hashlib
-try:
-    from udmover.cli.msg import Msg
-except ImportError:
-    from cli.msg import Msg
-try:
-    from udmover.cli.config import Config
-except ImportError:
-    from cli.config import Config
+from udmover.cli.msg import Msg
+from udmover.cli.config import Config
 
 
 # Python version major.minor

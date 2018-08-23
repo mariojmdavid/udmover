@@ -6,19 +6,10 @@ udmover Description
 from __future__ import division, print_function, absolute_import
 
 import sys
+from udmover.cli.cmdparser import CmdParser
+from udmover.cli.cmd import Cmd
+from udmover.cli.msg import Msg
 
-try:
-    from udmover.cli.cmdparser import CmdParser
-except ImportError:
-    from cli.cmdparser import CmdParser
-try:
-    from udmover.cli.cmd import Cmd
-except ImportError:
-    from cli.cmd import Cmd
-try:
-    from udmover.msg.cmd import Msg
-except ImportError:
-    from cli.msg import Msg
 
 __author__ = "Mario David"
 __copyright__ = "LIP"

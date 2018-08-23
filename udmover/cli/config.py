@@ -4,14 +4,8 @@ Configuration options
 """
 import os
 import sys
-try:
-    from udmover.cli.msg import Msg
-except ImportError:
-    from cli.msg import Msg
-try:
-    from udmover.cli.util import FileUtil
-except ImportError:
-    from cli.util import FileUtil
+from udmover.cli.msg import Msg
+from udmover.cli.utils import FileUtil
 
 
 class Config(object):

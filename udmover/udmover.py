@@ -47,7 +47,7 @@ def main():
         cmd.do_help()
         sys.exit(0)
     if cmdp.get("", "CMD") == "wdav":
-        cmd.do_webdavfree()
+        cmd.do_webdavlist()
         sys.exit(0)
     if not parseok:
         Msg.err("Error: parsing command line, use: udmover help")

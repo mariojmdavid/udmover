@@ -1,0 +1,35 @@
+#
+# Mandatory conf options
+#
+
+# Local top directory containing the files and directories to move
+# local_dir = /home/user/data
+#local_dir =
+
+#
+# Optional conf options
+#
+
+# User ssh public key filename
+#ssh_key = /home/user/.ssh/id_rsa.pub
+
+#
+# External/public storage configuration options
+# (At the moment only webdav)
+#
+
+# Select webdav
+#dav = True
+
+# Webdav endpoint
+# In the case of nextcloud
+#dav_endpoint = https://mync.mydomain/remote.php/dav/files
+
+# Webdav username/login
+#dav_user =
+
+# Webdav password
+#dav_pass =
+
+# Webdav top directory containing the files and directories to move
+#dav_topdir =

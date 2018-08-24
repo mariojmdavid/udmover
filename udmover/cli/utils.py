@@ -160,37 +160,6 @@ class FileUtil(object):
                 return True
         return False
 
-    def remove(self, force=False):
-        """Delete files or directories"""
-        if not os.path.exists(self.filename):
-            pass
-        elif self.filename.count("/") < 2:
-            Msg().err("Error: delete pathname too short: ", self.filename)
-            return False
-        elif self.uid() != Config.uid:
-            Msg().err("Error: delete not owner: ", self.filename)
-            return False
-        elif (not force) and (not self._is_safe_prefix(self.filename)):
-            Msg().err("Error: delete outside of directory tree: ",
-                      self.filename)
-            return False
-        elif os.path.isfile(self.filename) or os.path.islink(self.filename):
-            try:
-                os.remove(self.filename)
-            except (IOError, OSError):
-                Msg().err("Error: deleting file: ", self.filename)
-                return False
-        elif os.path.isdir(self.filename):
-            cmd = "/bin/rm -Rf %s || /bin/chmod -R u+w %s && /bin/rm -Rf %s" % \
-                  (self.filename, self.filename, self.filename)
-            if subprocess.call(cmd, stderr=Msg.chlderr, shell=True,
-                               close_fds=True, env=None):
-                Msg().err("Error: deleting directory: ", self.filename)
-                return False
-        if self.filename in dict(FileUtil.tmptrash):
-            del FileUtil.tmptrash[self.filename]
-        return True
-
     def verify_tar(self):
         """Verify a tar file"""
         if not os.path.isfile(self.filename):
@@ -204,12 +173,6 @@ class FileUtil(object):
                                stdout=Msg.chldnul, close_fds=True):
                 return False
             return True
-
-    def cleanup(self):
-        """Delete all temporary files"""
-        tmptrash_copy = dict(FileUtil.tmptrash)
-        for filename in tmptrash_copy:
-            FileUtil(filename).remove()
 
     def isdir(self):
         """Is filename a directory"""
@@ -394,18 +357,6 @@ class FileUtil(object):
                 return image_path
         return ""
 
-    def _link_change_apply(self, new_l_path, f_path, force):
-        """Actually apply the link convertion"""
-        p_path = os.path.realpath(os.path.dirname(f_path))
-        if force and not os.access(p_path, os.W_OK):
-            os.chmod(p_path, stat.S_IMODE(os.stat(p_path).st_mode) | stat.S_IWUSR)
-            os.remove(f_path)
-            os.symlink(new_l_path, f_path)
-            os.chmod(p_path, stat.S_IMODE(os.stat(p_path).st_mode) & ~stat.S_IWUSR)
-        else:
-            os.remove(f_path)
-            os.symlink(new_l_path, f_path)
-
     def _link_set(self, f_path, orig_path, root_path, force):
         """Convertion to container specific symbolic link"""
         l_path = os.readlink(f_path)
@@ -447,33 +398,6 @@ class FileUtil(object):
             self._link_change_apply(new_l_path, f_path, force)
             return True
         return False
-
-    def links_conv(self, force=False, to_container=True, orig_path=""):
-        """ Convert absolute symbolic links to relative symbolic links
-        """
-        root_path = os.path.realpath(self.filename)
-        links = []
-        if not self._is_safe_prefix(root_path):
-            Msg().err("Error: links convertion outside of directory tree: ",
-                      root_path)
-            return None
-        for dir_path, dummy, files in os.walk(root_path):
-            for f_name in files:
-                try:
-                    f_path = dir_path + "/" + f_name
-                    if not os.path.islink(f_path):
-                        continue
-                    if os.lstat(f_path).st_uid != Config.uid:
-                        continue
-                    if to_container:
-                        if self._link_set(f_path, orig_path, root_path, force):
-                            links.append(f_path)
-                    else:
-                        if self._link_restore(f_path, orig_path, root_path, force):
-                            links.append(f_path)
-                except OSError:
-                    continue
-        return links
 
     def match(self):
         """Find matching file with wildcard matching expression"""

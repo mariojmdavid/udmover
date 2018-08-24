@@ -12,21 +12,23 @@ User level client tool to move or transfer files and directories between storage
 Instalation
 ===========
 
-Instalation through virtualenv::
-mkdir udmenv
-virtualenv -p python3 udmenv
-source udmenv/bin/activate
+Installation through virtualenv::
+
+    mkdir udmenv
+    virtualenv -p python3 udmenv
+    source udmenv/bin/activate
 
 
 Configuration
 =============
 
 By default the udmover tool takes it's configuration from
-the file '~/.udm.conf'.
+the file ~/.udm.conf.
 
 Copy the sample configuration file can be found in
 to your home directory::
-cp udmenv/etc/udmover/udmover.conf.sample ~/.udm.conf
+
+    cp udmenv/etc/udmover/udmover.conf.sample ~/.udm.conf
 
 Modify the configuration file accordingly
 

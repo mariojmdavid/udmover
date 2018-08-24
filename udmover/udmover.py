@@ -6,9 +6,11 @@ udmover Description
 from __future__ import division, print_function, absolute_import
 
 import sys
+import os
 from udmover.cli.cmdparser import CmdParser
 from udmover.cli.cmd import Cmd
 from udmover.cli.msg import Msg
+from udmover.cli.config import Config
 
 
 __author__ = "Mario David"
@@ -25,7 +27,15 @@ def main():
     """
     cmdp = CmdParser()
     cmd = Cmd()
+    conf = Config()
     parseok = cmdp.parse(sys.argv)
+    conf_file = os.path.expanduser('~') + os.sep + '.udm.conf'
+    try:
+        with open(conf_file, "r") as f:
+            f.read()
+    except (IOError, OSError):
+        Msg.err("Error: config file: %s" % conf_file)
+        sys.exit(1)
 
     if (cmdp.get("", "CMD") == "version") or \
             cmdp.get("--version", "GEN_OPT") or \
@@ -37,8 +47,9 @@ def main():
             cmdp.get("-h", "GEN_OPT"):
         cmd.do_help()
         sys.exit(0)
-    if cmdp.get("", "CMD") == "wdav":
-        cmd.do_webdavlist()
+    if cmdp.get("", "CMD") == "lsext":
+        cf = conf.get_conf(conf_file)
+        cmd.do_list_files_ext(cf)
         sys.exit(0)
     if not parseok:
         Msg.err("Error: parsing command line, use: udmover help")

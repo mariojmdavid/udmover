@@ -1,10 +1,10 @@
+[DEFAULT]
 #
 # Mandatory conf options
 #
 
-# Local top directory containing the files and directories to move
-# local_dir = /home/user/data
-#local_dir =
+# Log level
+loglevel = 3
 
 #
 # Optional conf options
@@ -13,6 +13,13 @@
 # User ssh public key filename
 #ssh_key = /home/user/.ssh/id_rsa.pub
 
+[local]
+# Local top directory containing the files and directories to move
+# local_dir = /home/user/data
+#local_dir =
+
+
+[external]
 #
 # External/public storage configuration options
 # (At the moment only webdav)

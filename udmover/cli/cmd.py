@@ -25,11 +25,15 @@ class Cmd(object):
         """
         Msg().out(self.do_help.__doc__)
 
-    def do_webdavlist(self):
+    def do_list_files_ext(self, cf):
         """
-        Get list of files from the webdav server
+        Get list of files from the external/public server
         """
-        env = dict()
+        env = {'webdav_hostname': cf['dav_endpoint'],
+               'webdav_login': cf['dav_user'],
+               'webdav_password': cf['dav_pass']}
+        #if cf['dav_topdir']:
+        #    env['webdav_root'] = cf['dav_topdir']
         client = Client(env)
         check = client.check()
         if check:

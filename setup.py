@@ -10,7 +10,9 @@ import udmover
 
 
 def setup_package():
-    homedir = os.environ['HOME']
+    dst = 'etc/udmover/'
+    src = 'etc/udmover/udmover.conf.sample'
+
     setuptools.setup(
         version=udmover.__version__,
         packages=setuptools.find_packages(),
@@ -18,7 +20,8 @@ def setup_package():
            'console_scripts': [
                'udmover = udmover.udmover:main'
            ]
-        }
+        },
+        data_files=[(dst, [src])]
     )
 
 

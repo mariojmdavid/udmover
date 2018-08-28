@@ -136,7 +136,7 @@ class Client(object):
         self.default_options.update({
             'URL': self.webdav.hostname,
             'NOBODY': 1,
-            'SSLVERSION': pycurl.SSLVERSION_TLSv1,
+            'SSLVERSION': pycurl.SSLVERSION_TLSv1_2,
         })
 
         if not self.webdav.token:
@@ -161,6 +161,14 @@ class Client(object):
 
         if self.webdav.key_path:
             self.default_options['SSLKEY'] = self.webdav.key_path
+
+        if self.webdav.insecure:
+            self.default_options['SSL_VERIFYPEER'] = 0
+            self.default_options['SSL_VERIFYHOST'] = 0
+        else:
+            self.default_options['SSL_VERIFYPEER'] = 1
+            self.default_options['SSL_VERIFYHOST'] = 2
+            self.default_options['CAPATH'] = self.webdav.capath
 
         if self.webdav.recv_speed:
             self.default_options['MAX_RECV_SPEED_LARGE'] = self.webdav.recv_speed

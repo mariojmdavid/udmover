@@ -36,5 +36,10 @@ class Config(object):
             cf['dav_pass'] = self.parser.get('external', 'dav_pass')
             if self.parser.has_option('external', 'dav_topdir'):
                 cf['dav_topdir'] = self.parser.get('external', 'dav_topdir')
-
+            cf['dav_insecure'] = self.parser.getboolean('external', 'dav_insecure')
+            if not cf['dav_insecure']:
+                if self.parser.has_option('external', 'dav_capath'):
+                    cf['dav_capath'] = self.parser.get('external', 'dav_capath')
+                else:
+                    cf['dav_capath'] = '/etc/ssl/certs/ca-certificates.crt'
         return cf

@@ -40,3 +40,9 @@ loglevel = 3
 
 # Webdav top directory containing the files and directories to move
 #dav_topdir =
+
+# Set insecure (= True), will not use the CA on the client side
+#dav_insecure = False
+
+# File with all root CA certificate
+#dav_capath = /etc/ssl/certs/ca-certificates.crt

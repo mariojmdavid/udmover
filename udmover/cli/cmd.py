@@ -31,9 +31,16 @@ class Cmd(object):
         """
         env = {'webdav_hostname': cf['dav_endpoint'],
                'webdav_login': cf['dav_user'],
-               'webdav_password': cf['dav_pass']}
-        #if cf['dav_topdir']:
-        #    env['webdav_root'] = cf['dav_topdir']
+               'webdav_password': cf['dav_pass'],
+               'webdav_insecure': cf['dav_insecure']}
+        if 'dav_topdir' in cf:
+            env['webdav_root'] = cf['dav_topdir']
+        if not cf['dav_insecure']:
+            if 'dav_capath' in cf:
+                env['webdav_capath'] = cf['dav_capath']
+        Msg().out(env)
+
+
         client = Client(env)
         check = client.check()
         if check:
